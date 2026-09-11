@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Fitness Membership Management System MySQL Project by Darshana Shrivardhankar">
+
+    <title>Fitness Membership Management System | Darshana Shrivardhankar</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Project CSS -->
+
+    <link rel="stylesheet" href="../project-style.css">
+
+
+    <style>
+
+        /* =========================================
+           SCREENSHOT / VIDEO SWITCHER
+           ========================================= */
+
+        .project-media-section {
+            margin: 45px 0 70px;
+        }
+
+        .media-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .media-switch-btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .media-switch-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .media-switch-btn.active {
+            background: #111;
+            color: #fff;
+        }
+
+
+        /* =========================================
+           IMAGE SLIDER
+           ========================================= */
+
+        .media-display {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #111;
+        }
+
+        .media-content {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .media-content.active {
+            display: block;
+        }
+
+        .fitness-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .fitness-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fitness-slide.active {
+            display: block;
+        }
+
+        .fitness-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #111;
+        }
+
+
+        /* =========================================
+           SLIDER ARROWS
+           ========================================= */
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+
+        /* =========================================
+           SLIDER DOTS
+           ========================================= */
+
+        .fitness-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .fitness-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .fitness-dot.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+
+        /* =========================================
+           VIDEO
+           ========================================= */
+
+        .fitness-video-wrapper {
+            width: 100%;
+            background: #000;
+        }
+
+        .fitness-video {
+            width: 100%;
+            max-height: 650px;
+            display: block;
+            background: #000;
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 600px) {
+
+            .media-switcher {
+                gap: 8px;
+            }
+
+            .media-switch-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+
+            .fitness-slider {
+                height: 300px;
+            }
+
+            .slider-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 20px;
+            }
+
+            .slider-prev {
+                left: 10px;
+            }
+
+            .slider-next {
+                right: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+         ========================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html#home" class="logo">
+                Darshana Namaye
+            </a>
+
+            <nav>
+
+                <a href="../index.html#home">
+                    Home
+                </a>
+
+                <a href="../index.html#about">
+                    About
+                </a>
+
+                <a href="../index.html#skills">
+                    Skills
+                </a>
+
+                <a href="../index.html#projects">
+                    Projects
+                </a>
+
+                <a href="../index.html#experience">
+                    Experience
+                </a>
+
+                <a href="../index.html#contact">
+                    Contact
+                </a>
+
+            </nav>
+
+            <a href="../resume.pdf"
+                class="resume-btn"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                Resume ↗
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="project-container">
+
+
+        <!-- Back to Projects -->
+
+        <a href="../index.html#projects"
+            class="back-link">
+
+            ← Back to Projects
+
+        </a>
+
+
+        <!-- =========================================
+             PROJECT HERO
+             ========================================= -->
+
+        <section class="project-hero">
+
+            <span class="project-category">
+
+                MYSQL / SQL
+
+            </span>
+
+
+            <h1>
+
+                Fitness Membership Management System
+
+            </h1>
+
+
+            <p class="project-subtitle">
+
+                A MySQL database project designed to manage fitness
+                membership data and perform analytical SQL queries.
+
+            </p>
+
+
+            <!-- Technology Tags -->
+
+            <div class="project-tags">
+
+                <span class="project-tag">
+                    MySQL
+                </span>
+
+                <span class="project-tag">
+                    SQL
+                </span>
+
+                <span class="project-tag">
+                    Database
+                </span>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="project-buttons">
+
+                <a href="https://github.com/namayedarshana/MYSQL-Project---Fitness-Membership-Management-System"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+
+                    View GitHub
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             SCREENSHOT / LIVE DEMO AREA
+             ========================================= -->
+
+        <section class="project-media-section">
+
+
+            <!-- Switch Buttons -->
+
+            <div class="media-switcher">
+
+                <button
+                    id="screenshotsBtn"
+                    class="media-switch-btn active"
+                    onclick="showScreenshots()">
+
+                    🖼 Screenshots
+
+                </button>
+
+
+                <button
+                    id="liveDemoBtn"
+                    class="media-switch-btn"
+                    onclick="showLiveDemo()">
+
+                    ▶ Live Demo
+
+                </button>
+
+            </div>
+
+
+            <!-- Media Display -->
+
+            <div class="media-display">
+
+
+                <!-- =================================
+                     SCREENSHOTS
+                     ================================= -->
+
+                <div
+                    id="screenshotsContent"
+                    class="media-content active">
+
+
+                    <div class="fitness-slider">
+
+
+                        <!-- Slide 1 -->
+
+                        <div class="fitness-slide active">
+
+                            <img
+                                src="../images/fitness/1stpage.png"
+                                alt="Fitness Membership Management System MySQL Dashboard">
+
+                        </div>
+
+
+                        <!--
+                        Add more screenshots later like this:
+                    -->
+                        <div class="fitness-slide">
+
+                            <img
+                                src="../images/fitness/ER.png"
+                                alt="Fitness Membership Management System Screenshot">
+
+                        </div>
+                        
+
+
+                        <!-- Previous -->
+
+                        <button
+                            class="slider-arrow slider-prev"
+                            onclick="changeFitnessSlide(-1)"
+                            aria-label="Previous screenshot">
+
+                            &#10094;
+
+                        </button>
+
+
+                        <!-- Next -->
+
+                        <button
+                            class="slider-arrow slider-next"
+                            onclick="changeFitnessSlide(1)"
+                            aria-label="Next screenshot">
+
+                            &#10095;
+
+                        </button>
+
+
+                        <!-- Dots -->
+
+                        <div class="fitness-dots">
+
+                            <button
+                                class="fitness-dot active"
+                                onclick="showFitnessSlide(0)"
+                                aria-label="Show screenshot 1">
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     LIVE VIDEO
+                     ================================= -->
+
+                <div
+                    id="videoContent"
+                    class="media-content">
+
+
+                    <div class="fitness-video-wrapper">
+
+                        <video
+                            id="fitnessVideo"
+                            class="fitness-video"
+                            controls
+                            preload="metadata">
+
+
+                            <!--
+                            Replace this with your actual
+                            Fitness video filename.
+                            -->
+
+                            <source
+                                src="fitness_membership.mp4"
+                                type="video/mp4">
+
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             PROJECT OVERVIEW
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Project Overview
+
+            </h2>
+
+
+            <p>
+
+                This project is designed to manage and streamline the operations of a fitness center. It 
+focuses on maintaining clear records of members, trainers, workout sessions, 
+membership plans, payments, and feedback.
+
+            </p>
+
+
+            <br>
+
+
+            <p>
+
+                The project demonstrates how a relational database
+                can be used to organize structured information,
+                manage records and retrieve useful information
+                through SQL queries.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             OBJECTIVE
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Objective
+
+            </h2>
+
+
+            <ul>
+
+                <li>
+
+                    Ensures organized data management for the gym.
+
+                </li>
+
+
+                <li>
+
+                    Helps in tracking performance of trainers and sessions.
+
+                </li>
+
+
+                <li>
+
+                    Provides financial transparency through payment records.
+
+                </li>
+
+
+                <li>
+
+                    Improves member satisfaction with structured feedback.
+
+                </li>
+
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================================
+             DATASET
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Dataset
+
+            </h2>
+
+
+            <p>
+
+                The project is built on six main tables:
+Member_Details , Trainers_Details,  Workout_Sessions,  Membership_Plans
+Payment, and  Feedback
+
+            </p>
+
+
+            <div class="info-grid">
+
+
+                <div class="info-card">
+
+                    <h3>
+
+                        Data Type
+
+                    </h3>
+
+                    <p>
+
+                        Synthetic Dataset
+
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+
+                        Database
+
+                    </h3>
+
+                    <p>
+
+                        MySQL
+
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+
+                        Analysis
+
+                    </h3>
+
+                    <p>
+
+                        SQL Queries
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- =========================================
+             PROJECT WORKFLOW
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Project Workflow
+
+            </h2>
+
+
+            <div class="workflow">
+
+
+                <!-- Step 01 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+
+                        01
+
+                    </span>
+
+
+                    <h3>
+
+                        Database Planning
+
+                    </h3>
+
+
+                    <p>
+
+                        Identified the type of fitness membership
+                        information required for the database.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Step 02 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+
+                        02
+
+                    </span>
+
+
+                    <h3>
+
+                        Database Creation
+
+                    </h3>
+
+
+                    <p>
+
+                        Created the relational database structure
+                        using MySQL.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Step 03 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+
+                        03
+
+                    </span>
+
+
+                    <h3>
+
+                        Data Management
+
+                    </h3>
+
+
+                    <p>
+
+                        Organized and managed fitness
+                        membership-related records.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Step 04 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+
+                        04
+
+                    </span>
+
+
+                    <h3>
+
+                        SQL Analysis
+
+                    </h3>
+
+
+                    <p>
+
+                        Used SQL queries to retrieve and analyze
+                        information from the database.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             TECHNICAL DETAILS
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Technical Details
+
+            </h2>
+
+
+            <h3>
+
+                MySQL
+
+            </h3>
+
+
+            <p>
+
+                MySQL was used as the relational database
+                management system for storing and managing
+                the project data.
+
+            </p>
+
+
+            <h3>
+
+                SQL
+
+            </h3>
+
+
+            <p>
+
+                SQL queries were used to retrieve, filter,
+                organize and analyze information stored
+                within the database.
+
+            </p>
+
+
+
+
+        </section>
+
+
+
+
+        <!-- =========================================
+             RESULTS & INSIGHTS
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                Results & Insights
+
+            </h2>
+
+
+            <ul>
+
+                <li>
+
+                    Identify which membership plan has the highest number of enrolled members and revenue generated. 
+                    This helps the gym understand its most successful plan.
+
+                </li>
+
+
+                <li>
+
+                    Analyze members whose payment status is “Not Paid” or “Partially Paid.” 
+                    This helps the gym identify pending payments and improve cash-flow management.
+
+                </li>
+
+
+                <li>
+
+                   Compare trainers based on number of members trained and average customer rating. 
+                   This can help management identify high-performing trainers and areas needing improvement.
+
+                </li>
+
+
+                <li>
+
+                    Identify members who have been assigned trainers but have not provided feedback. 
+                    The gym can use this information to encourage members to give feedback and improve service quality.
+
+                </li>
+
+
+                <li>
+
+                    Identify trainers receiving ratings below 3/5. Management 
+                    can investigate the reasons for dissatisfaction and provide additional training or support where required.
+
+                </li>
+                <li>
+                    Analyze VIP members who have assigned trainers, including their workout timings and session end dates. 
+                    This helps monitor whether premium members are receiving the expected level of personal training service
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================================
+             GITHUB REPOSITORY
+             ========================================= -->
+
+        <section class="case-section">
+
+            <h2>
+
+                GitHub Repository
+
+            </h2>
+
+
+            <div class="github-box">
+
+
+                <p>
+
+                    Explore the complete MySQL database project
+                    and supporting SQL queries.
+
+                </p>
+
+
+                <a
+                    href="https://github.com/namayedarshana/MYSQL-Project---Fitness-Membership-Management-System"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+
+                    View Source Code
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             PROJECT NAVIGATION
+             ========================================= -->
+
+        <div class="next-project">
+
+
+            <a href="climate-aqi.html">
+
+                ← Indian AQI & Climate Report
+
+            </a>
+
+
+            <a href="booklytics.html">
+
+                Booklytics →
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="project-footer">
+
+        <p>
+
+            © 2026 Darshana Namaye. All rights reserved.
+
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           SCREENSHOT SLIDER
+           ========================================= */
+
+        let currentFitnessSlide = 0;
+
+
+        const fitnessSlides =
+            document.querySelectorAll(".fitness-slide");
+
+
+        const fitnessDots =
+            document.querySelectorAll(".fitness-dot");
+
+
+        function showFitnessSlide(index) {
+
+
+            if (index >= fitnessSlides.length) {
+
+                currentFitnessSlide = 0;
+
+            }
+
+            else if (index < 0) {
+
+                currentFitnessSlide =
+                    fitnessSlides.length - 1;
+
+            }
+
+            else {
+
+                currentFitnessSlide = index;
+
+            }
+
+
+            fitnessSlides.forEach(function (slide) {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            fitnessDots.forEach(function (dot) {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            fitnessSlides[currentFitnessSlide]
+                .classList.add("active");
+
+
+            if (fitnessDots[currentFitnessSlide]) {
+
+                fitnessDots[currentFitnessSlide]
+                    .classList.add("active");
+
+            }
+
+        }
+
+
+        function changeFitnessSlide(direction) {
+
+            showFitnessSlide(
+                currentFitnessSlide + direction
+            );
+
+        }
+
+
+        /* =========================================
+           SHOW SCREENSHOTS
+           ========================================= */
+
+        function showScreenshots() {
+
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+
+            const fitnessVideo =
+                document.getElementById("fitnessVideo");
+
+
+            screenshotsContent.classList.add("active");
+
+            videoContent.classList.remove("active");
+
+
+            screenshotsBtn.classList.add("active");
+
+            liveDemoBtn.classList.remove("active");
+
+
+            /*
+             * Pause video when switching back
+             * to screenshots.
+             */
+
+            fitnessVideo.pause();
+
+        }
+
+
+        /* =========================================
+           SHOW LIVE DEMO
+           ========================================= */
+
+        function showLiveDemo() {
+
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+
+            const fitnessVideo =
+                document.getElementById("fitnessVideo");
+
+
+            screenshotsContent.classList.remove("active");
+
+            videoContent.classList.add("active");
+
+
+            screenshotsBtn.classList.remove("active");
+
+            liveDemoBtn.classList.add("active");
+
+
+            /*
+             * Start video when Live Demo is clicked.
+             * Browser autoplay policies may prevent
+             * automatic playback if the video has sound.
+             */
+
+            fitnessVideo.play().catch(function () {
+
+                console.log(
+                    "Video is ready. Press Play to start."
+                );
+
+            });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+

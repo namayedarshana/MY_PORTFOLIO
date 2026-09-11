@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BOOKLYTICS | Darshana Namaye</title>
+
+    <link rel="stylesheet" href="../project-style.css">
+
+    <style>
+        /* ================================
+           MEDIA SWITCHER
+        ================================= */
+
+        .project-media-section {
+            margin: 45px 0 70px;
+        }
+
+        .media-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .media-switch-btn {
+            padding: 11px 22px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            background: white;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .media-switch-btn:hover {
+            border-color: #111;
+            color: #111;
+        }
+
+        .media-switch-btn.active {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        .media-display {
+            position: relative;
+        }
+
+        .media-content {
+            display: none;
+        }
+
+        .media-content.active {
+            display: block;
+        }
+
+        /* ================================
+           BOOKLYTICS SLIDER
+        ================================= */
+
+        .booklytics-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #e2e2e2;
+        }
+
+        .booklytics-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .booklytics-slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .booklytics-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(17, 17, 17, 0.85);
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 5;
+            transition: 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: #111;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .slider-prev {
+            left: 18px;
+        }
+
+        .slider-next {
+            right: 18px;
+        }
+
+        .booklytics-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .booklytics-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .booklytics-dot.active {
+            background: #111;
+            transform: scale(1.2);
+        }
+
+        /* ================================
+           VIDEO
+        ================================= */
+
+        .booklytics-video-wrapper {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid #e2e2e2;
+        }
+
+        .booklytics-video {
+            display: block;
+            width: 100%;
+            max-height: 600px;
+            background: #111;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            .media-switcher {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .media-switch-btn {
+                white-space: nowrap;
+            }
+
+            .booklytics-slider {
+                height: 300px;
+            }
+
+            .slider-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .slider-prev {
+                left: 10px;
+            }
+
+            .slider-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html#home" class="logo">
+                Darshana Namaye
+            </a>
+
+            <nav>
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <a
+                href="../resume.pdf"
+                class="resume-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Resume ↗
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         MAIN CONTENT
+    ================================= -->
+
+    <main class="project-container">
+
+        <!-- BACK LINK -->
+
+        <a href="../index.html#projects" class="back-link">
+            ← Back to Projects
+        </a>
+
+
+        <!-- ================================
+             PROJECT HERO
+        ================================= -->
+
+        <section class="project-hero">
+
+            <span class="project-category">
+                PYTHON / WEB SCRAPING
+            </span>
+
+            <h1>
+                BOOKLYTICS
+            </h1>
+
+            <p class="project-subtitle">
+                A Python web scraping and data analysis project that extracts
+                book information from Books to Scrape, cleans and structures
+                the data, and presents meaningful insights through a Power BI
+                dashboard.
+            </p>
+
+            <div class="project-tags">
+
+                <span class="project-tag">Python</span>
+                <span class="project-tag">BeautifulSoup</span>
+                <span class="project-tag">Pandas</span>
+                <span class="project-tag">Web Scraping</span>
+                <span class="project-tag">Power BI</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+                <a
+                    href="https://github.com/namayedarshana/BOOKLYTICS---Python-Web-Scraping-Power-BI-Dashboard"
+                    class="project-btn primary-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View on GitHub ↗
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             SCREENSHOT / LIVE DEMO
+        ================================= -->
+
+        <section class="project-media-section">
+
+            <div class="media-switcher">
+
+                <button
+                    id="screenshotsBtn"
+                    class="media-switch-btn active"
+                    onclick="showScreenshots()"
+                >
+                    Screenshots
+                </button>
+
+                <button
+                    id="liveDemoBtn"
+                    class="media-switch-btn"
+                    onclick="showLiveDemo()"
+                >
+                    Live Demo
+                </button>
+
+            </div>
+
+
+            <div class="media-display">
+
+                <!-- SCREENSHOTS -->
+
+                <div
+                    id="screenshotsContent"
+                    class="media-content active"
+                >
+
+                    <div class="booklytics-slider">
+
+                        <!-- Screenshot 1 -->
+
+                        <div class="booklytics-slide active">
+
+                            <img
+                                src="../images/booklytics/homepage.png"
+                                alt="BOOKLYTICS Book Web Scraping Project"
+                            >
+
+                        </div>
+
+
+                        <!--
+                        ADD MORE SCREENSHOTS HERE IF NEEDED
+                    -->
+                        <div class="booklytics-slide">
+
+                            <img
+                                src="../images/booklytics/dashboard.png"
+                                alt="BOOKLYTICS Power BI Dashboard"
+                            >
+
+                        </div>
+                     
+
+
+                        <button
+                            class="slider-arrow slider-prev"
+                            onclick="changeBooklyticsSlide(-1)"
+                        >
+                            ‹
+                        </button>
+
+                        <button
+                            class="slider-arrow slider-next"
+                            onclick="changeBooklyticsSlide(1)"
+                        >
+                            ›
+                        </button>
+
+                    </div>
+
+
+                    <div class="booklytics-dots">
+
+                        <span
+                            class="booklytics-dot active"
+                            onclick="showBooklyticsSlide(0)"
+                        ></span>
+
+                        <!--
+                        ADD MORE DOTS IF YOU ADD MORE SCREENSHOTS
+
+                        <span
+                            class="booklytics-dot"
+                            onclick="showBooklyticsSlide(1)"
+                        ></span>
+                        -->
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE DEMO -->
+
+                <div
+                    id="videoContent"
+                    class="media-content"
+                >
+
+                    <div class="booklytics-video-wrapper">
+
+                        <video
+                            id="booklyticsVideo"
+                            class="booklytics-video"
+                            controls
+                            preload="metadata"
+                        >
+
+                            <!--
+                            REPLACE THIS WITH YOUR ACTUAL VIDEO FILE NAME
+                            -->
+
+                            <source
+                                src="booklytics.mp4"
+                                type="video/mp4"
+                            >
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PROJECT OVERVIEW
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Overview
+            </h2>
+
+            <p>
+                “Booklytics is an end-to-end data analytics project where I first scraped book data 
+                from the Book to Scrape website using Python and BeautifulSoup. 
+                I then used Pandas to clean and preprocess the data, including handling missing values and 
+                formatting the data. Finally, I used Power BI to create an interactive dashboard that provides 
+                insights into book prices, ratings, categories, and stock levels.”
+            </p>
+
+        </section>
+
+
+        <!-- ================================
+             OBJECTIVE
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Objective
+            </h2>
+
+            <ul>
+
+                <li>
+                    To scrape book data from the Book to Scrape website using Python and BeautifulSoup
+                </li>
+
+                <li>
+                    To clean and preprocess the data using Pandas for accurate analysis.
+                </li>
+
+                <li>
+                    To analyze book prices, ratings, categories, and stock levels.
+                </li>
+
+                <li>
+                    To identify useful patterns and trends across different book categories.
+                </li>
+
+                <li>
+                    To create an interactive Power BI dashboard for clear visualization and data-driven insights.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- ================================
+             DATASET
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Dataset
+            </h2>
+
+            <p>
+                The data was collected from the Books to Scrape website.
+                Approximately 50 pages were scraped and the extracted
+                information was combined into a structured dataset.
+            </p>
+
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Source
+                    </h3>
+
+                    <p>
+                        https://books.toscrape.com/
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Pages
+                    </h3>
+
+                    <p>
+                        50 Pages
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Records
+                    </h3>
+
+                    <p>
+                        Book Information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <h3>
+                Main Attributes
+            </h3>
+
+            <ul>
+
+                <li>
+                    Title
+                </li>
+
+                <li>
+                    Price
+                </li>
+
+                <li>
+                    Rating
+                </li>
+
+                <li>
+                    Availability
+                </li>
+
+                <li>
+                    Category
+                </li>
+
+                <li>
+                    UPC
+                </li>
+
+                <li>
+                    Stock Count
+                </li>
+
+            </ul>
+
+        </section>
+
+
+
+
+        <!-- ================================
+             WORKFLOW
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Workflow
+            </h2>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Website
+                    </h3>
+
+                    <p>
+                        Identified the required book information and website
+                        structure.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Web Scraping
+                    </h3>
+
+                    <p>
+                        Used Requests and BeautifulSoup to extract data from
+                        multiple pages.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Data Cleaning
+                    </h3>
+
+                    <p>
+                        Used Pandas to clean, transform, and structure the
+                        scraped dataset.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Visualization
+                    </h3>
+
+                    <p>
+                        Built a Power BI dashboard to explore the final data.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             TECHNICAL DETAILS
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Technical Details
+            </h2>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Programming
+                    </h3>
+
+                    <p>
+                        Python
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Scraping
+                    </h3>
+
+                    <p>
+                        Requests & BeautifulSoup
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Data Analysis
+                    </h3>
+
+                    <p>
+                        Pandas
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Visualization
+                    </h3>
+
+                    <p>
+                        Power BI
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Dataset
+                    </h3>
+
+                    <p>
+                        Books to Scrape
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Pages Scraped
+                    </h3>
+
+                    <p>
+                        50 Pages
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             RESULTS
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Results & Insights
+            </h2>
+
+
+            <ul>
+
+                <li>
+                   General Reading contains 152 books, making it the largest category, followed by Nonfiction with 110 books.
+                </li>
+
+                <li>
+                    General Reading has 1,345 units in stock, the highest among all categories. Nonfiction follows with 975 units. This indicates these categories have the largest inventory levels.
+                </li>
+
+                <li>
+                    Among the categories shown in the average-price chart, Suspense has the highest average price at $58.33, while New Adult has the lowest at $46.38.
+                </li>
+
+                <li>
+                    Books with a 1-star rating account for 226 books, the highest rating group. In comparison, 5-star books account for 196 books. This suggests the dataset has a relatively large proportion of low-rated books.
+                </li>
+
+                <li>
+                    Across all 1,000 books, the average price is $35.07 and the average rating is 2.92/5. This indicates that the overall collection has moderate pricing but relatively low average customer ratings.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- ================================
+             GITHUB
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                GitHub Repository
+            </h2>
+
+            <div class="github-box">
+
+                <p>
+                    Explore the Python web scraping code, data preparation,
+                    analysis, and project files on GitHub.
+                </p>
+
+                <a
+                    href="https://github.com/namayedarshana/BOOKLYTICS---Python-Web-Scraping-Power-BI-Dashboard"
+                    class="project-btn primary-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View GitHub Repository ↗
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PREVIOUS / NEXT PROJECT
+        ================================= -->
+
+        <div class="next-project">
+
+            <a href="fitness-membership.html">
+                ← Previous: Fitness Membership
+            </a>
+
+           
+
+            <a href="bank-loan.html">
+                Next: Bank Loan Data Report →
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="project-footer">
+
+        © 2026 Darshana Namaye. All rights reserved.
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        let currentBooklyticsSlide = 0;
+
+        const booklyticsSlides =
+            document.querySelectorAll(".booklytics-slide");
+
+        const booklyticsDots =
+            document.querySelectorAll(".booklytics-dot");
+
+
+        function showBooklyticsSlide(index) {
+
+            if (index >= booklyticsSlides.length) {
+
+                currentBooklyticsSlide = 0;
+
+            } else if (index < 0) {
+
+                currentBooklyticsSlide =
+                    booklyticsSlides.length - 1;
+
+            } else {
+
+                currentBooklyticsSlide = index;
+
+            }
+
+
+            booklyticsSlides.forEach(function (slide) {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            booklyticsDots.forEach(function (dot) {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            booklyticsSlides[currentBooklyticsSlide]
+                .classList.add("active");
+
+
+            if (booklyticsDots[currentBooklyticsSlide]) {
+
+                booklyticsDots[currentBooklyticsSlide]
+                    .classList.add("active");
+
+            }
+
+        }
+
+
+        function changeBooklyticsSlide(direction) {
+
+            showBooklyticsSlide(
+                currentBooklyticsSlide + direction
+            );
+
+        }
+
+
+        function showScreenshots() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const booklyticsVideo =
+                document.getElementById("booklyticsVideo");
+
+
+            screenshotsContent.classList.add("active");
+
+            videoContent.classList.remove("active");
+
+            screenshotsBtn.classList.add("active");
+
+            liveDemoBtn.classList.remove("active");
+
+            booklyticsVideo.pause();
+
+        }
+
+
+        function showLiveDemo() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const booklyticsVideo =
+                document.getElementById("booklyticsVideo");
+
+
+            screenshotsContent.classList.remove("active");
+
+            videoContent.classList.add("active");
+
+            screenshotsBtn.classList.remove("active");
+
+            liveDemoBtn.classList.add("active");
+
+
+            booklyticsVideo.play().catch(function () {
+
+                console.log(
+                    "Video is ready. Press Play to start."
+                );
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

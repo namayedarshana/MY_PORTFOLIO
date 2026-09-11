@@ -1,0 +1,1429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calories Burn Prediction Machine Learning Project by Darshana Shrivardhankar">
+
+    <title>Calories Burn Prediction | Darshana Shrivardhankar</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="../project-style.css">
+
+
+    <style>
+
+        /* =========================================
+           SCREENSHOT / VIDEO SWITCHER
+           ========================================= */
+
+        .project-media-section {
+            margin: 45px 0 70px;
+        }
+
+        .media-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .media-switch-btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .media-switch-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .media-switch-btn.active {
+            background: #111;
+            color: #fff;
+        }
+
+
+        /* =========================================
+           MEDIA DISPLAY
+           ========================================= */
+
+        .media-display {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #111;
+        }
+
+        .media-content {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .media-content.active {
+            display: block;
+        }
+
+
+        /* =========================================
+           IMAGE SLIDER
+           ========================================= */
+
+        .calories-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .calories-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .calories-slide.active {
+            display: block;
+        }
+
+        .calories-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #111;
+        }
+
+
+        /* =========================================
+           SLIDER ARROWS
+           ========================================= */
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+
+            font-size: 25px;
+            cursor: pointer;
+
+            z-index: 5;
+
+            transition: all 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+
+        /* =========================================
+           SLIDER DOTS
+           ========================================= */
+
+        .calories-dots {
+            position: absolute;
+
+            bottom: 18px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+            gap: 8px;
+
+            z-index: 5;
+        }
+
+        .calories-dot {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+            border: none;
+
+            background: rgba(255, 255, 255, 0.55);
+
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .calories-dot.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+
+        /* =========================================
+           VIDEO
+           ========================================= */
+
+        .calories-video-wrapper {
+            width: 100%;
+            background: #000;
+        }
+
+        .calories-video {
+            width: 100%;
+            max-height: 650px;
+
+            display: block;
+
+            background: #000;
+        }
+
+
+        /* =========================================
+           RESULT BOX
+           ========================================= */
+
+        .prediction-result {
+            margin-top: 25px;
+            padding: 25px;
+
+            border-radius: 12px;
+
+            background: #f7f7f7;
+            border-left: 4px solid #111;
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 600px) {
+
+            .media-switcher {
+                gap: 8px;
+            }
+
+            .media-switch-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+
+            .calories-slider {
+                height: 300px;
+            }
+
+            .slider-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 20px;
+            }
+
+            .slider-prev {
+                left: 10px;
+            }
+
+            .slider-next {
+                right: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+         ========================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html#home" class="logo">
+                Darshana Namaye
+            </a>
+
+
+            <nav>
+
+                <a href="../index.html#home">
+                    Home
+                </a>
+
+                <a href="../index.html#about">
+                    About
+                </a>
+
+                <a href="../index.html#skills">
+                    Skills
+                </a>
+
+                <a href="../index.html#projects">
+                    Projects
+                </a>
+
+                <a href="../index.html#experience">
+                    Experience
+                </a>
+
+                <a href="../index.html#contact">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <a href="../resume.pdf"
+                class="resume-btn"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                Resume ↗
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
+    <main class="project-container">
+
+
+        <!-- Back -->
+
+        <a href="../index.html#projects"
+            class="back-link">
+
+            ← Back to Projects
+
+        </a>
+
+
+
+        <!-- =====================================
+             PROJECT HERO
+             ===================================== -->
+
+        <section class="project-hero">
+
+
+            <span class="project-category">
+
+                MACHINE LEARNING
+
+            </span>
+
+
+            <h1>
+
+                Calories Burn Prediction
+
+            </h1>
+
+
+            <p class="project-subtitle">
+
+                A machine learning regression project that predicts
+                calories burned during exercise using physical and
+                activity-related features such as duration and heart rate.
+
+            </p>
+
+
+
+            <!-- Tags -->
+
+            <div class="project-tags">
+
+
+                <span class="project-tag">
+                    Python
+                </span>
+
+
+                <span class="project-tag">
+                    Pandas
+                </span>
+
+
+                <span class="project-tag">
+                    NumPy
+                </span>
+
+
+                <span class="project-tag">
+                    Matplotlib
+                </span>
+
+
+                <span class="project-tag">
+                    Scikit-learn
+                </span>
+
+
+                <span class="project-tag">
+                    Streamlit
+                </span>
+
+
+                <span class="project-tag">
+                    Machine Learning
+                </span>
+
+
+            </div>
+
+
+
+            <!-- GitHub -->
+
+            <div class="project-buttons">
+
+                <a href="https://github.com/namayedarshana/Calories-Burning-Prediction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+
+                    View GitHub
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCREENSHOTS / LIVE DEMO
+             ===================================== -->
+
+        <section class="project-media-section">
+
+
+            <!-- Switch buttons -->
+
+            <div class="media-switcher">
+
+
+                <button
+                    id="screenshotsBtn"
+                    class="media-switch-btn active"
+                    onclick="showScreenshots()">
+
+                    🖼 Screenshots
+
+                </button>
+
+
+                <button
+                    id="liveDemoBtn"
+                    class="media-switch-btn"
+                    onclick="showLiveDemo()">
+
+                    ▶ Live Demo
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- Media -->
+
+            <div class="media-display">
+
+
+                <!-- =================================
+                     SCREENSHOTS
+                     ================================= -->
+
+                <div
+                    id="screenshotsContent"
+                    class="media-content active">
+
+
+                    <div class="calories-slider">
+
+
+                        <!-- Screenshot 1 -->
+
+                        <div class="calories-slide active">
+
+                            <img
+                                src="../images/calories/homePage.png"
+                                alt="Calories Burn Prediction Streamlit Application">
+
+                        </div>
+
+
+                        <!--
+                        Add another screenshot here if required.
+
+                        Example:
+                    -->
+                        <div class="calories-slide">
+
+                            <img
+                                src="../images/calories/prediction.png"
+                                alt="Calories Burn Prediction Result">
+
+                        </div>
+
+                    
+
+
+                        <!-- Previous -->
+
+                        <button
+                            class="slider-arrow slider-prev"
+                            onclick="changeCaloriesSlide(-1)"
+                            aria-label="Previous screenshot">
+
+                            &#10094;
+
+                        </button>
+
+
+                        <!-- Next -->
+
+                        <button
+                            class="slider-arrow slider-next"
+                            onclick="changeCaloriesSlide(1)"
+                            aria-label="Next screenshot">
+
+                            &#10095;
+
+                        </button>
+
+
+                        <!-- Dots -->
+
+                        <div class="calories-dots">
+
+
+                            <button
+                                class="calories-dot active"
+                                onclick="showCaloriesSlide(0)"
+                                aria-label="Show screenshot 1">
+                            </button>
+
+
+                            <!--
+                            If you add a second screenshot,
+                            uncomment this:
+
+                            <button
+                                class="calories-dot"
+                                onclick="showCaloriesSlide(1)"
+                                aria-label="Show screenshot 2">
+                            </button>
+                            -->
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     LIVE DEMO VIDEO
+                     ================================= -->
+
+                <div
+                    id="videoContent"
+                    class="media-content">
+
+
+                    <div class="calories-video-wrapper">
+
+
+                        <video
+                            id="caloriesVideo"
+                            class="calories-video"
+                            controls
+                            preload="metadata">
+
+
+                            <!--
+                            CHANGE THIS FILE NAME
+                            TO YOUR ACTUAL VIDEO FILE.
+                            -->
+
+                            <source
+                                src="Calories_Burn_Prediction.mp4"
+                                type="video/mp4">
+
+
+                            Your browser does not support
+                            the video tag.
+
+                        </video>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROJECT OVERVIEW
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Project Overview
+            </h2>
+
+
+            <p>
+
+                Calories Burn Prediction is a machine learning
+                regression project developed to estimate the number of
+                calories burned during physical activity.
+
+            </p>
+
+
+            <br>
+
+
+            <p>
+
+                The project uses exercise-related information such as
+                duration and heart rate to train a regression model.
+                A Streamlit application was created to allow users to
+                enter values and receive a predicted calorie-burn
+                result.
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             OBJECTIVE
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Objective
+            </h2>
+
+
+            <p>
+
+                The main objective was to predict the number of calories burned during exercise based on 
+                features such as gender, age, height, weight, exercise duration, heart rate, and body temperature..
+
+            </p>
+
+
+            <ul>
+
+                <li>
+                    Understand the relationship between exercise
+                    variables and calories burned.
+                </li>
+
+                <li>
+                    Clean and prepare the datasets for machine learning.
+                </li>
+
+                <li>
+                    Perform exploratory data analysis.
+                </li>
+
+                <li>
+                    Train a regression model.
+                </li>
+
+                <li>
+                    Evaluate the model's predictions.
+                </li>
+
+                <li>
+                    Deploy the model through Streamlit.
+                </li>
+
+            </ul>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             DATASET
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Dataset
+            </h2>
+
+
+            <p>
+
+                The project uses two datasets containing exercise and
+                calorie-related information. The datasets were
+                combined and prepared for analysis and model training.
+
+            </p>
+
+
+            <div class="info-grid">
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Data
+                    </h3>
+
+                    <p>
+                        Exercise & Calories
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Problem Type
+                    </h3>
+
+                    <p>
+                        Regression
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Deployment
+                    </h3>
+
+                    <p>
+                        Streamlit
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROJECT WORKFLOW
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Project Workflow
+            </h2>
+
+
+            <div class="workflow">
+
+
+                <!-- Step 01 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Data Collection
+                    </h3>
+
+                    <p>
+
+                        Imported the exercise and calorie datasets
+                        required for the prediction task and merge both together.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Step 02 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Data Cleaning
+                    </h3>
+
+                    <p>
+
+                        Checked the datasets and prepared the required
+                        columns for analysis and machine learning.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Step 03 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Exploratory Analysis
+                    </h3>
+
+                    <p>
+
+                        Used Python libraries to understand relationships
+                        between exercise variables and calories burned,
+                        and perform Encoding and Scaling.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Step 04 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Model Training
+                    </h3>
+
+                    <p>
+
+                        Built a regression model using Scikit-learn to
+                        predict calorie expenditure.
+                        Among 9 compared models , Random forest as selected.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Step 05 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        05
+                    </span>
+
+                    <h3>
+                        Streamlit Deployment
+                    </h3>
+
+                    <p>
+
+                        Created an interactive Streamlit application
+                        where users can enter exercise information and
+                        obtain a prediction.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             TECHNICAL DETAILS
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                ▶️ How to Open and Run the Project
+            </h2>
+
+
+            <h3>
+                Step 1: Open Visual Studio Code
+            </h3>
+
+            <p>
+
+                Open Visual Studio Code on your computer..
+
+            </p>
+
+
+            <h3>
+                Step 2: Open the Project Folder
+            </h3>
+
+            <p>
+
+                1.Click File → Open Folder<br>
+                2.Select the Calories Burn Prediction project folder.<Br>
+                3.Click Select Folder.
+
+            </p>
+
+
+            <h3>
+                Step 3: Open the Terminal
+            </h3>
+
+            <p>
+
+                In VS Code:<br>
+                Click Terminal → New Terminal<br>
+                Make sure the terminal is opened inside the project folder.
+
+            </p>
+
+
+            <h3>
+                Step 4: Install Required Libraries
+            </h3>
+
+            <p>
+
+                Run:  pip install -r requirements.txt<br>
+                This will install all the Python libraries required for the project.
+
+            </p>
+
+
+            <h3>
+                Step 5: Run the Streamlit Application
+            </h3>
+
+            <p>
+
+                python -m streamlit run app.py<br>
+                After running the command, Streamlit will provide a local URL, usually:
+
+http://localhost:8501
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             PREDICTION EXAMPLE
+             ===================================== -->
+
+        <section class="case-section">
+
+
+
+            <div class="prediction-result">
+
+
+                <h3>
+                    Disclaimer
+                </h3>
+
+
+                <p>
+
+                This application provides an estimated calorie-burn prediction based on patterns learned 
+                from the training dataset. 
+                The prediction should not be considered a medical, nutritional, or fitness recommendation.
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             RESULTS & INSIGHTS
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Results & Insights
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    Compared multiple regression algorithms, 
+                    including Linear Regression, Polynomial Regression, Ridge, 
+                    Lasso, KNN, Decision Tree, and Random Forest.
+                </li>
+
+                <li>
+                    Random Forest Regressor was selected as the final model based on its stronger test performance.
+                </li>
+
+                <li>
+                    The model captures non-linear relationships between personal and exercise-related features and calories burned.
+                </li>
+
+                <li>
+                    The trained model was successfully integrated into a Streamlit web application for real-time calorie-burn prediction.
+                </li>
+
+                <li>
+                    Users can enter their personal and exercise details and receive an estimated number of calories burned.
+                </li>
+
+            </ul>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             STREAMLIT DEPLOYMENT
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                Streamlit Deployment
+            </h2>
+
+
+            <p>
+
+                The trained regression model was integrated into a
+                Streamlit application. The application provides a
+                simple interface where users can enter exercise values
+                and view the predicted calorie expenditure.
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             GITHUB
+             ===================================== -->
+
+        <section class="case-section">
+
+
+            <h2>
+                GitHub Repository
+            </h2>
+
+
+            <div class="github-box">
+
+
+                <p>
+
+                    Explore the project files, Python code and
+                    supporting analysis.
+
+                </p>
+
+
+                <a href="https://github.com/namayedarshana/Calories-Burning-Prediction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+
+                    View Source Code
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROJECT NAVIGATION
+             ===================================== -->
+
+        <div class="next-project">
+
+
+            <a href="bank-loan.html">
+
+                ← Bank_Loan Report
+
+            </a>
+
+
+            <a href="climate-aqi.html">
+
+                Indian Climate & AQI Report →
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="project-footer">
+
+
+        <p>
+
+            © 2026 Darshana Namaye. All rights reserved.
+
+        </p>
+
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           SCREENSHOT SLIDER
+           ========================================= */
+
+        let currentCaloriesSlide = 0;
+
+
+        function getCaloriesSlides() {
+
+            return document.querySelectorAll(
+                ".calories-slide"
+            );
+
+        }
+
+
+        function getCaloriesDots() {
+
+            return document.querySelectorAll(
+                ".calories-dot"
+            );
+
+        }
+
+
+        function showCaloriesSlide(index) {
+
+
+            const slides =
+                getCaloriesSlides();
+
+
+            const dots =
+                getCaloriesDots();
+
+
+            if (slides.length === 0) {
+                return;
+            }
+
+
+            if (index >= slides.length) {
+
+                currentCaloriesSlide = 0;
+
+            }
+
+            else if (index < 0) {
+
+                currentCaloriesSlide =
+                    slides.length - 1;
+
+            }
+
+            else {
+
+                currentCaloriesSlide =
+                    index;
+
+            }
+
+
+            slides.forEach(function(slide) {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            dots.forEach(function(dot) {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            slides[currentCaloriesSlide]
+                .classList.add("active");
+
+
+            if (dots[currentCaloriesSlide]) {
+
+                dots[currentCaloriesSlide]
+                    .classList.add("active");
+
+            }
+
+        }
+
+
+        function changeCaloriesSlide(direction) {
+
+            showCaloriesSlide(
+                currentCaloriesSlide + direction
+            );
+
+        }
+
+
+
+        /* =========================================
+           SHOW SCREENSHOTS
+           ========================================= */
+
+        function showScreenshots() {
+
+
+            const screenshotsContent =
+                document.getElementById(
+                    "screenshotsContent"
+                );
+
+
+            const videoContent =
+                document.getElementById(
+                    "videoContent"
+                );
+
+
+            const screenshotsBtn =
+                document.getElementById(
+                    "screenshotsBtn"
+                );
+
+
+            const liveDemoBtn =
+                document.getElementById(
+                    "liveDemoBtn"
+                );
+
+
+            const caloriesVideo =
+                document.getElementById(
+                    "caloriesVideo"
+                );
+
+
+            screenshotsContent
+                .classList.add("active");
+
+
+            videoContent
+                .classList.remove("active");
+
+
+            screenshotsBtn
+                .classList.add("active");
+
+
+            liveDemoBtn
+                .classList.remove("active");
+
+
+            caloriesVideo.pause();
+
+        }
+
+
+
+        /* =========================================
+           SHOW LIVE DEMO
+           ========================================= */
+
+        function showLiveDemo() {
+
+
+            const screenshotsContent =
+                document.getElementById(
+                    "screenshotsContent"
+                );
+
+
+            const videoContent =
+                document.getElementById(
+                    "videoContent"
+                );
+
+
+            const screenshotsBtn =
+                document.getElementById(
+                    "screenshotsBtn"
+                );
+
+
+            const liveDemoBtn =
+                document.getElementById(
+                    "liveDemoBtn"
+                );
+
+
+            const caloriesVideo =
+                document.getElementById(
+                    "caloriesVideo"
+                );
+
+
+            screenshotsContent
+                .classList.remove("active");
+
+
+            videoContent
+                .classList.add("active");
+
+
+            screenshotsBtn
+                .classList.remove("active");
+
+
+            liveDemoBtn
+                .classList.add("active");
+
+
+            caloriesVideo
+                .play()
+                .catch(function() {
+
+                    console.log(
+                        "Video is ready. Press Play to start."
+                    );
+
+                });
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
+

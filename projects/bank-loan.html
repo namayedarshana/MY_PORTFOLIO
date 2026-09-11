@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bank Loan Data Report | Darshana Namaye</title>
+
+    <link rel="stylesheet" href="../project-style.css">
+
+    <style>
+        /* ================================
+           MEDIA SWITCHER
+        ================================= */
+
+        .project-media-section {
+            margin: 45px 0 70px;
+        }
+
+        .media-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .media-switch-btn {
+            padding: 11px 22px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            background: white;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .media-switch-btn:hover {
+            border-color: #111;
+            color: #111;
+        }
+
+        .media-switch-btn.active {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        .media-display {
+            position: relative;
+        }
+
+        .media-content {
+            display: none;
+        }
+
+        .media-content.active {
+            display: block;
+        }
+
+        /* ================================
+           BANK LOAN SLIDER
+        ================================= */
+
+        .bank-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #e2e2e2;
+        }
+
+        .bank-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bank-slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bank-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(17, 17, 17, 0.85);
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 5;
+            transition: 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: #111;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .slider-prev {
+            left: 18px;
+        }
+
+        .slider-next {
+            right: 18px;
+        }
+
+        .bank-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .bank-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .bank-dot.active {
+            background: #111;
+            transform: scale(1.2);
+        }
+
+        /* ================================
+           VIDEO
+        ================================= */
+
+        .bank-video-wrapper {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid #e2e2e2;
+        }
+
+        .bank-video {
+            display: block;
+            width: 100%;
+            max-height: 600px;
+            background: #111;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            .media-switcher {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .media-switch-btn {
+                white-space: nowrap;
+            }
+
+            .bank-slider {
+                height: 300px;
+            }
+
+            .slider-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .slider-prev {
+                left: 10px;
+            }
+
+            .slider-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html#home" class="logo">
+                Darshana Namaye
+            </a>
+
+            <nav>
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <a
+                href="../resume.pdf"
+                class="resume-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Resume ↗
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         MAIN CONTENT
+    ================================= -->
+
+    <main class="project-container">
+
+        <!-- BACK LINK -->
+
+        <a href="../index.html#projects" class="back-link">
+            ← Back to Projects
+        </a>
+
+
+        <!-- ================================
+             PROJECT HERO
+        ================================= -->
+
+        <section class="project-hero">
+
+            <span class="project-category">
+                EXCEL / DATA ANALYSIS
+            </span>
+
+            <h1>
+                Bank Loan Data Report
+            </h1>
+
+            <p class="project-subtitle">
+                An Excel-based data analysis project focused on understanding
+                loan performance, revenue, interest, customer segments,
+                disbursement trends, default rates, and repayment behavior.
+            </p>
+
+            <div class="project-tags">
+
+                <span class="project-tag">Excel</span>
+                <span class="project-tag">Data Cleaning</span>
+                <span class="project-tag">Pivot Tables</span>
+                <span class="project-tag">Charts</span>
+                <span class="project-tag">Data Analysis</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+                <a
+                    href="https://github.com/namayedarshana/Excel-Dashboard---Bank-Loan-Data-Analysis"
+                    class="project-btn primary-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View on GitHub ↗
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             SCREENSHOT / LIVE DEMO
+        ================================= -->
+
+        <section class="project-media-section">
+
+            <div class="media-switcher">
+
+                <button
+                    id="screenshotsBtn"
+                    class="media-switch-btn active"
+                    onclick="showScreenshots()"
+                >
+                    Screenshots
+                </button>
+
+                <button
+                    id="liveDemoBtn"
+                    class="media-switch-btn"
+                    onclick="showLiveDemo()"
+                >
+                    Live Demo
+                </button>
+
+            </div>
+
+
+            <div class="media-display">
+
+                <!-- SCREENSHOTS -->
+
+                <div
+                    id="screenshotsContent"
+                    class="media-content active"
+                >
+
+                    <div class="bank-slider">
+
+                        <!-- Screenshot 1 -->
+
+                        <div class="bank-slide active">
+
+                            <img
+                                src="../images/bank_loan/dashboard.png"
+                                alt="Bank Loan Data Analysis Dashboard"
+                            >
+
+                        </div>
+
+
+                        <!--
+                        ADD MORE SCREENSHOTS HERE IF YOU HAVE THEM
+
+                        <div class="bank-slide">
+                            <img
+                                src="../images/bank_loan/another-image.png"
+                                alt="Bank Loan Analysis"
+                            >
+                        </div>
+                        -->
+
+
+                        <button
+                            class="slider-arrow slider-prev"
+                            onclick="changeBankSlide(-1)"
+                        >
+                            ‹
+                        </button>
+
+                        <button
+                            class="slider-arrow slider-next"
+                            onclick="changeBankSlide(1)"
+                        >
+                            ›
+                        </button>
+
+                    </div>
+
+
+                    <div class="bank-dots">
+
+                        <span
+                            class="bank-dot active"
+                            onclick="showBankSlide(0)"
+                        ></span>
+
+                        <!--
+                        ADD MORE DOTS IF YOU ADD MORE SCREENSHOTS
+
+                        <span
+                            class="bank-dot"
+                            onclick="showBankSlide(1)"
+                        ></span>
+                        -->
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE DEMO -->
+
+                <div
+                    id="videoContent"
+                    class="media-content"
+                >
+
+                    <div class="bank-video-wrapper">
+
+                        <video
+                            id="bankVideo"
+                            class="bank-video"
+                            controls
+                            preload="metadata"
+                        >
+
+                            <!--
+                            REPLACE THIS WITH YOUR ACTUAL VIDEO FILE NAME
+                            -->
+
+                            <source
+                                src="Bank Loan Data.mp4"
+                                type="video/mp4"
+                            >
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PROJECT OVERVIEW
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Overview
+            </h2>
+
+            <p>
+                The workbook tracks a bank's loan book issued through 2021 across branches like Mumbai, 
+                Thane, Vashi, Pune, Nagpur, and Kolhapur. Each record captures borrower details 
+                (age, gender, occupation, income, home ownership), loan terms 
+                (amount, interest rate, installment, DTI), and outcome status 
+                (Fully Paid, Charged Off, or Current)
+            </p>
+
+        </section>
+
+
+        <!-- ================================
+             OBJECTIVE
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Objective
+            </h2>
+
+            <p>
+                The apparent goal is to evaluate loan portfolio health and flag risk patterns — specifically, 
+                understanding what share of loans turn bad, who is more likely to default, 
+                and how loan/borrower attributes (interest rate, DTI, income, loan purpose) 
+                relate to repayment outcomes. This supports underwriting and portfolio-risk decisions.
+
+
+        </section>
+
+
+
+
+
+
+        <!-- ================================
+             WORKFLOW
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Workflow
+            </h2>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Data Collection
+                    </h3>
+
+                    <p>
+                        Imported and reviewed the raw loan dataset.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Data Cleaning
+                    </h3>
+
+                    <p>
+                        Prepared and organized the data for analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Analysis
+                    </h3>
+
+                    <p>
+                        Used Pivot Tables, calculations, and charts to
+                        identify important patterns.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Reporting
+                    </h3>
+
+                    <p>
+                        Presented the findings through an Excel dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             TECHNICAL DETAILS
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Technical Details
+            </h2>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Data Cleaning
+                    </h3>
+
+                    <p>
+                        Excel
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Analysis
+                    </h3>
+
+                    <p>
+                        Pivot Tables
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Visualization
+                    </h3>
+
+                    <p>
+                        Excel Charts
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- ================================
+             RESULTS
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                Results & Insights
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    Total loans: 600, with ₹36.4L (3,636,075) disbursed and ₹38.5L (3,854,908) collected back overall — so the book is cash-flow positive.
+                </li>
+
+                <li>
+                    Loan quality: 69.7% Good Loans (418) vs. 30.3% Bad Loans (182) — roughly 1 in 3 loans defaults (Charged Off).
+                </li>
+
+                <li>
+                    Status split: 257 Fully Paid, 182 Charged Off, 161 still Current.
+                </li>
+
+                <li>
+                    Bad loans carry higher interest: Bad loans average 9.97% interest vs. 8.97% for 
+                    good loans — priced riskier, as expected, but the gap is modest.
+                </li>
+                <li>
+                    DTI isn't strongly differentiating: Debt-to-income is nearly identical between good (10.97%) 
+                    and bad (11.07%) loans — DTI alone doesn't explain defaults well here.
+                </li>
+                <li>
+                    Bad loans account for ~31.5% of total loan value (₹11.4L), slightly higher than their 30.3% 
+                    count share — meaning bad loans skew marginally larger.
+                </li>
+                <li>
+                    Loan purpose: Education (131), Medical (112), and Personal (106) are the 
+                    top reasons for borrowing; Venture and Debt Consolidation follow.
+                </li>
+                <li>
+                    Home ownership is fairly evenly split: Rent (203), Own (199), Mortgage (198).
+                </li>
+                <li>
+                    Verification status is a red flag area: 305 loans were Not Verified vs. 295 Verified — over half the book 
+                    isn't income/identity verified, a meaningful risk gap.
+                </li>
+                <li>
+                    Branch concentration: Mumbai alone accounts for ~25% of all loans (152 of 600).
+                </li>
+                <li>
+                    Borrower tenure: A large cluster (130) have 10+ years employment history, but another 
+                    large group (75) has under 1 year — a bimodal risk profile.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- ================================
+             GITHUB
+        ================================= -->
+
+        <section class="case-section">
+
+            <h2>
+                GitHub Repository
+            </h2>
+
+            <div class="github-box">
+
+                <p>
+                    Explore the project files, analysis, and dashboard
+                    implementation on GitHub.
+                </p>
+
+                <a
+                    href="https://github.com/namayedarshana/Excel-Dashboard---Bank-Loan-Data-Analysis"
+                    class="project-btn primary-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View GitHub Repository ↗
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PREVIOUS / NEXT PROJECT
+        ================================= -->
+
+        <div class="next-project">
+
+            <a href="booklytics.html">
+                ← Previous: BOOKLYTICS
+            </a>
+
+           
+
+            <a href="calories-burn.html">
+                Next: Calories Burn Prediction →
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="project-footer">
+
+        © 2026 Darshana Namaye. All rights reserved.
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        let currentBankSlide = 0;
+
+        const bankSlides =
+            document.querySelectorAll(".bank-slide");
+
+        const bankDots =
+            document.querySelectorAll(".bank-dot");
+
+
+        function showBankSlide(index) {
+
+            if (index >= bankSlides.length) {
+
+                currentBankSlide = 0;
+
+            } else if (index < 0) {
+
+                currentBankSlide = bankSlides.length - 1;
+
+            } else {
+
+                currentBankSlide = index;
+
+            }
+
+
+            bankSlides.forEach(function (slide) {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            bankDots.forEach(function (dot) {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            bankSlides[currentBankSlide]
+                .classList.add("active");
+
+
+            if (bankDots[currentBankSlide]) {
+
+                bankDots[currentBankSlide]
+                    .classList.add("active");
+
+            }
+
+        }
+
+
+        function changeBankSlide(direction) {
+
+            showBankSlide(
+                currentBankSlide + direction
+            );
+
+        }
+
+
+        function showScreenshots() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const bankVideo =
+                document.getElementById("bankVideo");
+
+
+            screenshotsContent.classList.add("active");
+
+            videoContent.classList.remove("active");
+
+            screenshotsBtn.classList.add("active");
+
+            liveDemoBtn.classList.remove("active");
+
+            bankVideo.pause();
+
+        }
+
+
+        function showLiveDemo() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const bankVideo =
+                document.getElementById("bankVideo");
+
+
+            screenshotsContent.classList.remove("active");
+
+            videoContent.classList.add("active");
+
+            screenshotsBtn.classList.remove("active");
+
+            liveDemoBtn.classList.add("active");
+
+
+            bankVideo.play().catch(function () {
+
+                console.log(
+                    "Video is ready. Press Play to start."
+                );
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

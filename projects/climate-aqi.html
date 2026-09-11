@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Indian Climate & AQI Analysis Power BI Project by Darshana Shrivardhankar">
+
+    <title>Indian Climate & AQI Analysis | Darshana Shrivardhankar</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="../project-style.css">
+
+    <style>
+        /* =========================================
+           SCREENSHOT / VIDEO SWITCHER
+           ========================================= */
+
+        .project-media-section {
+            margin: 45px 0 70px;
+        }
+
+        .media-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .media-switch-btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .media-switch-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .media-switch-btn.active {
+            background: #111;
+            color: #fff;
+        }
+
+        /* =========================================
+           IMAGE SLIDER
+           ========================================= */
+
+        .media-display {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #111;
+        }
+
+        .media-content {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .media-content.active {
+            display: block;
+        }
+
+        .climate-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .climate-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .climate-slide.active {
+            display: block;
+        }
+
+        .climate-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #111;
+        }
+
+        /* Slider arrows */
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+        /* Slider dots */
+
+        .climate-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .climate-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .climate-dot.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+        /* =========================================
+           VIDEO
+           ========================================= */
+
+        .climate-video-wrapper {
+            width: 100%;
+            background: #000;
+        }
+
+        .climate-video {
+            width: 100%;
+            max-height: 650px;
+            display: block;
+            background: #000;
+        }
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 600px) {
+
+            .media-switcher {
+                gap: 8px;
+            }
+
+            .media-switch-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+
+            .climate-slider {
+                height: 300px;
+            }
+
+            .slider-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 20px;
+            }
+
+            .slider-prev {
+                left: 10px;
+            }
+
+            .slider-next {
+                right: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         NAVIGATION
+         ========================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html#home" class="logo">
+                Darshana Namaye
+            </a>
+
+            <nav>
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <a href="../resume.pdf"
+                class="resume-btn"
+                target="_blank"
+                rel="noopener noreferrer">
+                Resume ↗
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="project-container">
+
+
+        <!-- Back to Projects -->
+
+        <a href="../index.html#projects" class="back-link">
+            ← Back to Projects
+        </a>
+
+
+        <!-- =====================================
+             PROJECT HERO
+             ===================================== -->
+
+        <section class="project-hero">
+
+            <span class="project-category">
+                POWER BI
+            </span>
+
+            <h1>
+                Indian Climate & AQI Analysis
+            </h1>
+
+            <p class="project-subtitle">
+                An interactive Power BI dashboard designed to analyze
+                weather conditions and air quality across Indian cities.
+                
+            </p>
+
+
+            <!-- Technology Tags -->
+
+            <div class="project-tags">
+
+                <span class="project-tag">
+                    Power BI
+                </span>
+
+                <span class="project-tag">
+                    DAX
+                </span>
+
+                <span class="project-tag">
+                    Power Query
+                </span>
+
+                <span class="project-tag">
+                    Data Cleaning
+                </span>
+
+                <span class="project-tag">
+                    Data Visualization
+                </span>
+
+                <span class="project-tag">
+                    Weather API
+                </span>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="project-buttons">
+
+                <a href="https://github.com/namayedarshana/India-Regional-Climate-and-AQI-Analysis-Report-of-year-2025"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+                    View GitHub
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SCREENSHOT / LIVE DEMO AREA
+             ===================================== -->
+
+        <section class="project-media-section">
+
+
+            <!-- Switch Buttons -->
+
+            <div class="media-switcher">
+
+                <button
+                    id="screenshotsBtn"
+                    class="media-switch-btn active"
+                    onclick="showScreenshots()">
+
+                    🖼 Screenshots
+
+                </button>
+
+
+                <button
+                    id="liveDemoBtn"
+                    class="media-switch-btn"
+                    onclick="showLiveDemo()">
+
+                    ▶ Live Demo
+
+                </button>
+
+            </div>
+
+
+            <!-- Media Display -->
+
+            <div class="media-display">
+
+
+                <!-- =================================
+                     SCREENSHOTS
+                     ================================= -->
+
+                <div
+                    id="screenshotsContent"
+                    class="media-content active">
+
+                    <div class="climate-slider">
+
+
+                        <!-- Slide 1 -->
+
+                        <div class="climate-slide active">
+
+                            <img
+                                src="../images/climate/weather.png"
+                                alt="Indian Climate and Weather Power BI Dashboard">
+
+                        </div>
+
+
+                        <!-- Slide 2 -->
+
+                        <div class="climate-slide">
+
+                            <img
+                                src="../images/climate/AQI.png"
+                                alt="Indian AQI Analysis Power BI Dashboard">
+
+                        </div>
+
+
+                        <!-- Previous -->
+
+                        <button
+                            class="slider-arrow slider-prev"
+                            onclick="changeClimateSlide(-1)"
+                            aria-label="Previous screenshot">
+
+                            &#10094;
+
+                        </button>
+
+
+                        <!-- Next -->
+
+                        <button
+                            class="slider-arrow slider-next"
+                            onclick="changeClimateSlide(1)"
+                            aria-label="Next screenshot">
+
+                            &#10095;
+
+                        </button>
+
+
+                        <!-- Dots -->
+
+                        <div class="climate-dots">
+
+                            <button
+                                class="climate-dot active"
+                                onclick="showClimateSlide(0)"
+                                aria-label="Show screenshot 1">
+                            </button>
+
+                            <button
+                                class="climate-dot"
+                                onclick="showClimateSlide(1)"
+                                aria-label="Show screenshot 2">
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     LIVE VIDEO
+                     ================================= -->
+
+                <div
+                    id="videoContent"
+                    class="media-content">
+
+                    <div class="climate-video-wrapper">
+
+                        <video
+                            id="climateVideo"
+                            class="climate-video"
+                            controls
+                            preload="metadata">
+
+                            <source
+                                src="Climate and AIR quality.mp4"
+                                type="video/mp4">
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PROJECT OVERVIEW
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Overview
+            </h2>
+
+            <p>
+                This project analyzed 2025 weather and AQI data for 92 Indian cities using Power BI. 
+                Compared cities and regions based on AQI, temperature, rainfall, humidity and visibility, 
+                and identified patterns such as the hottest, coldest, wettest and most polluted locations.
+            </p>
+
+            
+
+        </section>
+
+
+        <!-- =====================================
+             OBJECTIVE
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                Objective
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    Analyze weather conditions across Indian cities.
+                </li>
+
+                <li>
+                    Compare air quality between different locations.
+                </li>
+
+                <li>
+                    Create meaningful AQI categories for easier analysis.
+                </li>
+
+                <li>
+                    Identify cities with better and poorer air quality.
+                </li>
+
+                <li>
+                    Build an interactive Power BI dashboard for
+                    data-driven exploration.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =====================================
+             DATASET
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                Dataset
+            </h2>
+
+            <p>
+                The project used weather and air quality information
+                collected for multiple Indian cities. Weather data was
+                obtained using a weather API and prepared for analysis
+                in Power BI.
+            </p>
+
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Data Source
+                    </h3>
+
+                    <p>
+                        Synthetic Dataset
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Coverage
+                    </h3>
+
+                    <p>
+                        92 Indian Cities
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Tool
+                    </h3>
+
+                    <p>
+                        Power BI
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             DATA PREPARATION
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                Insights
+            </h2>
+
+            
+
+            <ul>
+
+                <li>
+                    Extreme temperature range: Cities span from 46.2°C (Nagpur) to -30.5°C (Drass)
+                     Drass and Leh are far colder than the rest of the "coldest" list, standing out as outliers.
+                </li>
+
+                <li>
+                    Inverse temp-humidity cycle: Temperature peaks in May-June, but humidity spikes later in July-September during monsoon. 
+                    This shows India's pre-monsoon heat gives way to monsoon-driven humidity.
+                </li>
+
+                <li>
+                    Rainfall isn't temperature-driven: Himachal Pradesh gets heavy rainfall (~300mm) despite cooler temps, while warmer states like Kerala and Goa see moderate rainfall. Ladakh has both low temp and low rainfall, 
+                    showing geography/monsoon exposure matters more than temperature alone
+                </li>
+
+                <li>
+                    Extreme pollution range across cities: AQI spans from 45.60 (Drass) to 230.03 (New Delhi) — nearly 5x difference. 
+                    New Delhi stands out as the most polluted, driven by heavy vehicle load and industrial activity.
+                </li>
+
+                <li>
+                    Winter is the pollution danger zone: AQI climbs steeply from October to December (117.87 → 200.92), while monsoon months (July-August) show the cleanest air (~57-58). 
+                    This seasonal swing suggests weather patterns and stubble burning heavily influence air quality.
+                </li>
+                <li>
+                    PM2.5 and visibility are inversely linked by climate zone: IGP (Indo-Gangetic Plain) and Semi-arid zones show the highest PM2.5 levels with correspondingly lower visibility, 
+                    while coastal/island zones (WestCoastHeavy, Island) show better visibility with lower particulate levels.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =====================================
+             PROJECT WORKFLOW
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                Project Workflow
+            </h2>
+
+
+            <div class="workflow">
+
+
+                <!-- Step 01 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Data Collection
+                    </h3>
+
+                    <p>
+                        Collected weather information for multiple
+                        Indian cities using a weather API.
+                    </p>
+
+                </div>
+
+
+                <!-- Step 02 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Data Cleaning
+                    </h3>
+
+                    <p>
+                        Prepared and transformed the raw data using
+                        Power Query for further analysis.
+                    </p>
+
+                </div>
+
+
+                <!-- Step 03 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Dashboard Development
+                    </h3>
+
+                    <p>
+                        Designed interactive Power BI dashboards with
+                        DAX, KPIs, charts, filters and city comparisons.
+                    </p>
+
+                </div>
+
+
+                <!-- Step 04 -->
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Analysis
+                    </h3>
+
+                    <p>
+                        Analyze dashboard to identify patterns and 
+                        Highlight the best and worst condition.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             TECHNICAL DETAILS
+             ===================================== -->
+
+      
+
+
+
+
+
+
+
+        <!-- =====================================
+             GITHUB REPOSITORY
+             ===================================== -->
+
+        <section class="case-section">
+
+            <h2>
+                GitHub Repository
+            </h2>
+
+            <div class="github-box">
+
+                <p>
+                    Explore the project files and supporting analysis.
+                </p>
+
+                <a href="https://github.com/namayedarshana/India-Regional-Climate-and-AQI-Analysis-Report-of-year-2025"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-btn primary-btn">
+
+                    View Source Code
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PROJECT NAVIGATION
+             ===================================== -->
+
+        <div class="next-project">
+
+            <a href="calories-burn.html">
+                ← Calories Burn Prediction
+            </a>
+
+            <a href="fitness-membership.html">
+                Fitness Membership Management System →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="project-footer">
+
+        <p>
+            © 2026 Darshana Namaye. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+        /* =========================================
+           SCREENSHOT SLIDER
+           ========================================= */
+
+        let currentClimateSlide = 0;
+
+        const climateSlides =
+            document.querySelectorAll(".climate-slide");
+
+        const climateDots =
+            document.querySelectorAll(".climate-dot");
+
+
+        function showClimateSlide(index) {
+
+            if (index >= climateSlides.length) {
+                currentClimateSlide = 0;
+            }
+
+            else if (index < 0) {
+                currentClimateSlide = climateSlides.length - 1;
+            }
+
+            else {
+                currentClimateSlide = index;
+            }
+
+
+            climateSlides.forEach(function (slide) {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            climateDots.forEach(function (dot) {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            climateSlides[currentClimateSlide]
+                .classList.add("active");
+
+
+            climateDots[currentClimateSlide]
+                .classList.add("active");
+
+        }
+
+
+        function changeClimateSlide(direction) {
+
+            showClimateSlide(
+                currentClimateSlide + direction
+            );
+
+        }
+
+
+        /* =========================================
+           SHOW SCREENSHOTS
+           ========================================= */
+
+        function showScreenshots() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const climateVideo =
+                document.getElementById("climateVideo");
+
+
+            screenshotsContent.classList.add("active");
+
+            videoContent.classList.remove("active");
+
+
+            screenshotsBtn.classList.add("active");
+
+            liveDemoBtn.classList.remove("active");
+
+
+            /*
+             * Pause video when switching back
+             * to screenshots.
+             */
+
+            climateVideo.pause();
+
+        }
+
+
+        /* =========================================
+           SHOW LIVE DEMO
+           ========================================= */
+
+        function showLiveDemo() {
+
+            const screenshotsContent =
+                document.getElementById("screenshotsContent");
+
+            const videoContent =
+                document.getElementById("videoContent");
+
+            const screenshotsBtn =
+                document.getElementById("screenshotsBtn");
+
+            const liveDemoBtn =
+                document.getElementById("liveDemoBtn");
+
+            const climateVideo =
+                document.getElementById("climateVideo");
+
+
+            screenshotsContent.classList.remove("active");
+
+            videoContent.classList.add("active");
+
+
+            screenshotsBtn.classList.remove("active");
+
+            liveDemoBtn.classList.add("active");
+
+
+            /*
+             * Start video when Live Demo is clicked.
+             *
+             * Browser autoplay policies may prevent
+             * automatic playback if the video has sound.
+             * The user can simply press Play if needed.
+             */
+
+            climateVideo.play().catch(function () {
+
+                console.log(
+                    "Video is ready. Press Play to start."
+                );
+
+            });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
