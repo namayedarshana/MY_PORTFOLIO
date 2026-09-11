@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Darshana - Data Analyst Portfolio | Python, SQL, Power BI, Excel and Machine Learning">
+
+    <title>Darshana | Data Analyst Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+<script>
+function changeProjectImage(button, direction) {
+
+    const slider = button.closest(".project-image-slider");
+
+    const images = slider.querySelectorAll(".project-slider-image");
+    const dots = slider.querySelectorAll(".image-dot");
+
+    let currentIndex = 0;
+
+    images.forEach(function(image, index) {
+        if (image.classList.contains("active")) {
+            currentIndex = index;
+        }
+    });
+
+    currentIndex += direction;
+
+    if (currentIndex >= images.length) {
+        currentIndex = 0;
+    }
+
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    }
+
+    images.forEach(function(image) {
+        image.classList.remove("active");
+    });
+
+    dots.forEach(function(dot) {
+        dot.classList.remove("active");
+    });
+
+    images[currentIndex].classList.add("active");
+    dots[currentIndex].classList.add("active");
+}
+</script>
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="#home" class="logo">
+            Darshana Namaye
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="resume.pdf" class="resume-btn" target="_blank">
+            Resume ↗
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-container">
+
+        <div class="hero-text">
+
+            <p class="eyebrow">
+                DATA ANALYST • Data SCIENTIST
+            </p>
+
+            <h1>
+                Turning data into 
+                <span>meaningful insights.</span>
+            </h1>
+
+            <p class="hero-description">
+
+                Hi, I'm <strong>Darshana</strong> — a data enthusiast who enjoys
+                transforming raw data into clear insights, dashboards and
+                data-driven solutions.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="primary-btn">
+                    Explore My Projects
+                </a>
+
+                <a href="#contact" class="secondary-btn">
+                    Let's Connect
+                </a>
+
+            </div>
+
+            <div class="hero-links">
+
+                <a href="https://github.com/namayedarshana?tab=repositories"
+                   target="_blank">
+                    GitHub ↗
+                </a>
+
+                <a href="https://www.linkedin.com/in/darshananamaye/"
+                   target="_blank">
+                    LinkedIn ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section id="about" class="section about">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <p class="section-number">ABOUT</p>
+
+            <h2>
+                Curious about data.<br>
+                Focused on <span>impact.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <div class="about-text">
+
+                <p>
+                    I am a data analytics fresher with a background in
+                    Information Technology and experience working in a
+                    professional MNC environment as a Graphic Designer.
+                </p>
+
+                <p>
+                    My current focus is on using Python and its Libraries, SQL, Excel, Power BI,
+                    Tableau and Machine Learning to analyze data, discover
+                    patterns and communicate insights effectively.
+                </p>
+
+                <p>
+                    I enjoy working on practical projects that combine
+                    analytical thinking, visualization and technology.
+                </p>
+
+            </div>
+
+
+            <div class="about-stats">
+
+                <div class="stat-card">
+                    <strong>05</strong>
+                    <span>Portfolio Projects</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>07+</strong>
+                    <span>Analytics Tools</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>01</strong>
+                    <span>Hackathon Achievement</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section id="skills" class="section skills-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+            <p class="section-number">SKILLS</p>
+
+            <h2>
+                Tools I use to<br>
+                <span>work with data.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🐍</div>
+
+                <h3>Python</h3>
+
+                <p>
+                    Python • Pandas • NumPy • Matplotlib • Seaborn
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🗄️</div>
+
+                <h3>SQL</h3>
+
+                <p>
+                    MySQL • Joins • Subqueries • Aggregations • Data Analysis
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">📈</div>
+
+                <h3>Power BI</h3>
+
+                <p>
+                    DAX • Data Modeling • Power Query • Interactive Dashboards
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">📊</div>
+
+                <h3>Excel</h3>
+
+                <p>
+                    Advanced Excel • Pivot Tables • Charts • Data Analysis
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🤖</div>
+
+                <h3>Machine Learning</h3>
+
+                <p>
+                    Regression • Feature Engineering • Model Evaluation • Classification
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">📉</div>
+
+                <h3>Tableau</h3>
+
+                <p>
+                    Visualization • Filters • Parameters • Dashboards
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section id="projects" class="section projects-section">
+
+    <div class="section-container">
+
+        <div class="section-heading project-heading">
+
+            <div>
+
+                <p class="section-number">SELECTED WORK</p>
+
+                <h2>
+                    Projects built with<br>
+                    <span>data & curiosity.</span>
+                </h2>
+
+            </div>
+
+            <p class="project-intro">
+                A selection of projects covering machine learning,
+                business intelligence, SQL, web scraping and Excel analytics.
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+            <!--Project 1-->
+            <a href="projects/calories-burn.html"
+   class="project-card project-featured">
+
+    <div class="project-image">
+
+        <div class="project-image-slider">
+
+            <!--<img src="D:\MY Portfolio\images\calories\homePage.png"
+                 alt="Calories Burn Prediction Dashboard"
+                 class="project-slider-image active">
+        -->
+            <img src="images/calories/prediction.png"
+                 alt="Calories Burn Prediction Model Output"
+                 class="project-slider-image">
+
+            <button type="button"
+                    class="image-prev"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, -1)">
+                ‹
+            </button>
+
+            <button type="button"
+                    class="image-next"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, 1)">
+                ›
+            </button>
+
+            <div class="image-dots">
+                <span class="image-dot active"></span>
+                <span class="image-dot"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="project-content">
+
+        <div class="project-top">
+
+            <span class="project-category">
+                MACHINE LEARNING
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+        </div>
+
+        <h3>
+            Calories Burn Prediction
+        </h3>
+
+        <p>
+            A machine learning project for predicting calories
+            burned based on exercise and physiological data.
+        </p>
+
+        <div class="tags">
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>Scikit-learn</span>
+            <span>ML</span>
+        </div>
+
+        <div class="case-study">
+            View Case Study →
+        </div>
+
+    </div>
+
+</a>
+  
+
+
+            <!-- PROJECT 2 -->
+
+<a href="projects/climate-aqi.html" class="project-card">
+
+    <div class="project-image">
+        <div class="project-image-slider">
+
+            <img src="images\climate\weather.png"
+                 alt="Indian Climate and AQI Analysis Dashboard"
+                 class="project-slider-image active">
+
+            <img src="images\climate\AQI.png"
+                 alt="Indian Climate and AQI Analysis Dashboard"
+                 class="project-slider-image">
+
+            <button type="button"
+                    class="image-prev"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, -1)">
+                ‹
+            </button>
+
+            <button type="button"
+                    class="image-next"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, 1)">
+                ›
+            </button>
+
+            <div class="image-dots">
+
+                <span class="image-dot active"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 0)">
+                </span>
+
+                <span class="image-dot"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 1)">
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="project-content">
+
+        <div class="project-top">
+            <span class="project-category">POWER BI</span>
+            <span class="arrow">↗</span>
+        </div>
+
+        <h3>Indian Climate & AQI Analysis</h3>
+
+        <p>
+            An interactive Power BI dashboard analyzing weather
+            conditions and air quality across Indian cities.
+        </p>
+
+        <div class="tags">
+            <span>Power BI</span>
+            <span>DAX</span>
+            <span>Power Query</span>
+            <span>Data Visualization</span>
+        </div>
+
+        <div class="case-study">
+            View Case Study →
+        </div>
+
+    </div>
+
+</a>
+
+
+            <!-- PROJECT 3 -->
+
+            <a href="projects/fitness-membership.html" class="project-card">
+
+    <div class="project-image">
+        <div class="project-image-slider">
+
+            <img src="images\fitness\1stpage.png"
+                 alt="Indian Climate and AQI Analysis Dashboard"
+                 class="project-slider-image active">
+
+            <img src="images\fitness\ER.png"
+                 alt="Indian Climate and AQI Analysis Dashboard"
+                 class="project-slider-image">
+
+            <button type="button"
+                    class="image-prev"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, -1)">
+                ‹
+            </button>
+
+            <button type="button"
+                    class="image-next"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, 1)">
+                ›
+            </button>
+
+            <div class="image-dots">
+
+                <span class="image-dot active"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 0)">
+                </span>
+
+                <span class="image-dot"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 1)">
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="project-content">
+
+        <div class="project-top">
+            <span class="project-category">MYSQL | SQl</span>
+            <span class="arrow">↗</span>
+        </div>
+
+        <h3>Fitness Membership Management System</h3>
+
+        <p>
+            A MYSQL database project designed to manage Fitness
+            membership data and perform analytical SQL queries.
+        </p>
+
+        <div class="tags">
+            <span>MYSQl</span>
+            <span>SQL</span>
+            <span>Database</span>
+        </div>
+
+        <div class="case-study">
+            View Case Study →
+        </div>
+
+    </div>
+
+</a>
+
+
+            <!-- PROJECT 4 -->
+
+<a href="projects/booklytics.html" class="project-card">
+
+    <div class="project-image">
+        <div class="project-image-slider">
+
+            <img src="images\booklytics\homepage.png"
+                 alt="Booklytics Dashboard"
+                 class="project-slider-image active">
+
+            <img src="images\booklytics\dashboard.png"
+                 alt="Booklytics Web Scraping Analysis"
+                 class="project-slider-image">
+
+            <button type="button"
+                    class="image-prev"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, -1)">
+                ‹
+            </button>
+
+            <button type="button"
+                    class="image-next"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, 1)">
+                ›
+            </button>
+
+            <div class="image-dots">
+
+                <span class="image-dot active"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 0)">
+                </span>
+
+                <span class="image-dot"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 1)">
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="project-content">
+
+        <div class="project-top">
+            <span class="project-category">PYTHON • POWER BI</span>
+            <span class="arrow">↗</span>
+        </div>
+
+        <h3>Booklytics</h3>
+
+        <p>
+            A web scraping and data analysis project that extracts
+            book information and transforms it into an interactive dashboard.
+        </p>
+
+        <div class="tags">
+            <span>Python</span>
+            <span>BeautifulSoup</span>
+            <span>Pandas</span>
+            <span>Power BI</span>
+        </div>
+
+        <div class="case-study">
+            View Case Study →
+        </div>
+
+    </div>
+
+</a>
+
+
+            <!-- PROJECT 5 -->
+
+<a href="projects/bank-loan.html" class="project-card">
+
+    <div class="project-image">
+        <div class="project-image-slider">
+
+            <img src="images\bank_loan\dashboard.png"
+                 alt="Bank Loan Data Report"
+                 class="project-slider-image active">
+
+            <img src="images\bank_loan\data.png"
+                 alt="Bank Loan Data Analysis"
+                 class="project-slider-image">
+
+            <button type="button"
+                    class="image-prev"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, -1)">
+                ‹
+            </button>
+
+            <button type="button"
+                    class="image-next"
+                    onclick="event.preventDefault(); event.stopPropagation(); changeProjectImage(this, 1)">
+                ›
+            </button>
+
+            <div class="image-dots">
+
+                <span class="image-dot active"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 0)">
+                </span>
+
+                <span class="image-dot"
+                      onclick="event.preventDefault(); event.stopPropagation(); changeProjectImageTo(this, 1)">
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="project-content">
+
+        <div class="project-top">
+            <span class="project-category">EXCEL</span>
+            <span class="arrow">↗</span>
+        </div>
+
+        <h3>Bank Loan Data Report</h3>
+
+        <p>
+            An Excel-based data analysis project using data cleaning,
+            pivot tables, charts and reporting to present loan insights.
+        </p>
+
+        <div class="tags">
+            <span>Excel</span>
+            <span>Data Cleaning</span>
+            <span>Pivot Tables</span>
+            <span>Charts</span>
+        </div>
+
+        <div class="case-study">
+            View Case Study →
+        </div>
+
+    </div>
+
+</a>
+</div>
+</div>
+</section>
+
+
+<!-- =========================
+     EXPERIENCE
+========================= -->
+
+
+<section id="experience" class="section experience-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <p class="section-number">EXPERIENCE</p>
+
+            <h2>
+                My professional<br>
+                <span>journey.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <!-- 2026 -->
+
+            <div class="timeline-item">
+
+                <div class="timeline-date">
+                    2026
+                </div>
+
+                <div class="timeline-content">
+
+                    <p class="timeline-company">
+                        Data Analytics & Data Science
+                    </p>
+
+                    <h3>
+                        Building Data Projects
+                    </h3>
+
+                    <p>
+                        Developed practical projects using Python, SQL,
+                        Power BI, Excel, Tableau and Machine Learning.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2020 — 2022 -->
+
+            <div class="timeline-item">
+
+                <div class="timeline-date">
+                    2020 — 2022
+                </div>
+
+                <div class="timeline-content">
+
+                    <p class="timeline-company">
+                        Cimpress India
+                    </p>
+
+                    <h3>
+                        Graphics Excellence Specialist
+                    </h3>
+
+                    <p>
+                        Worked on production-ready artwork, quality checks,
+                        artwork layouts, colors and print specifications
+                        while collaborating with cross-functional teams.
+                    </p>
+
+                    <div class="tags">
+                        <span>Adobe Photoshop</span>
+                        <span>Illustrator</span>
+                        <span>PowerPoint</span>
+                        <span>Quality Control</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2020 — 2021 -->
+
+            <div class="timeline-item">
+
+                <div class="timeline-date">
+                    2020 — 2021
+                </div>
+
+                <div class="timeline-content">
+
+                    <p class="timeline-company">
+                        Cimpress India
+                    </p>
+
+                    <h3>
+                        Junior Graphic Designer Trainee
+                    </h3>
+
+                    <p>
+                        Worked on logo customization and product mockups
+                        while maintaining quality and production standards.
+                    </p>
+                    <div class="tags">
+                        <span>Adobe Photoshop</span>
+                        <span>Illustrator</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- =========================
+     EDUCATION / ACHIEVEMENT
+========================= -->
+
+
+<section class="section achievement-section">
+
+    <div class="section-container">
+
+        <div class="achievement-grid">
+
+            <!-- EDUCATION -->
+            <div class="education-area">
+                <p class="section-number">EDUCATION</p>
+
+               
+
+                <h2>
+                    My Education<br>
+                    <span>Background</span>
+                </h2>
+
+                <div class="education-item">
+                    
+                    <span class="education-year"><br>2026</span>
+
+                    <div>
+                        <h3>Master in Data Analytics & Data Science with<br>Artificial Intelligence & Machine Learning</h3>
+                        <p>Institute : IT Vedant</p>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <span class="education-year"><br>2018</span>
+
+                    <div>
+                        <h3>Bachelor of Science in Information Technology</h3>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ACHIEVEMENT -->
+          
+<div class="achievement-box">
+
+    <p>ACHIEVEMENT</p>
+
+    <h3>🏆 IT Vedant Monsoon Hackathon 2026</h3>
+
+    <strong>3rd Prize</strong>
+
+    <p class="achievement-project">
+        Topic : Flood Prediction Analysis
+    </p>
+
+    <p class="achievement-role">
+        Power BI Dashboard • Team Project
+    </p>
+
+</div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="section contact-section">
+
+    <div class="section-container">
+
+        <p class="section-number">
+            CONTACT
+        </p>
+
+        <h2>
+            Let's turn data into<br>
+            <span>something meaningful.</span>
+        </h2>
+
+        <p class="contact-description">
+
+            I'm open to opportunities in Data Analytics, Business Intelligence
+            and related data roles.
+
+        </p>
+
+
+        <div class="contact-buttons">
+
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=darshananamaye2@gmail.com"
+   class="primary-btn"
+   target="_blank">
+    Email Me →
+</a>
+
+            <a href="https://www.linkedin.com/in/darshananamaye/"
+               target="_blank"
+               class="secondary-btn">
+                LinkedIn ↗
+            </a>
+
+            <a href="https://github.com/namayedarshana?tab=repositories"
+               target="_blank"
+               class="secondary-btn">
+                GitHub ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <p>
+            © 2026 Darshana Namaye. All rights reserved.
+        </p>
+
+        <div>
+
+            <a href="#home">
+                Back to top ↑
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
